@@ -78,7 +78,9 @@
 
 - (void)startBunching
 {
-    BNCHBunchRegion *region = [[BNCHBunchRegion alloc]initRegionWithIdentifier:@"BunchSampleApp"];
+//    BNCHBunchRegion *region = [[BNCHBunchRegion alloc]initRegionWithIdentifier:@"BunchSampleApp"];
+    
+    BNCHBunchRegion *region = [[BNCHBunchRegion alloc] initRegionWithMajor:90 minor:91 identifier:@"BunchSampleApp"];
     region.notifyEntryStateOnDisplay = YES;
     region.notifyOnEntry = YES;
     region.notifyOnExit = YES;
@@ -188,6 +190,14 @@
         //отправляем алерт, который отобразится на экране если приложение в бэкграунде
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }
+}
+
+- (void)bunchManager:(BNCHBunchManager *)manager didRangeBunches:(NSArray *)bunches inRegion:(BNCHBunchRegion *)region
+{
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSLog(@"%@bunches:%lu", NSStringFromSelector(_cmd),(unsigned long)bunches.count);
+    NSLog(@"%@bunches:%@", NSStringFromSelector(_cmd),bunches);
+    NSLog(@"%@region:%@", NSStringFromSelector(_cmd),region);
 }
 
 //получение контента, привязанного к метке
